@@ -8,8 +8,12 @@
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "lib-vc2017/glew32.lib")
 #pragma comment(lib, "lib-vc2017/glfw3.lib")
-void Renderer::render(std::vector<glm::vec3> vertices)
+void Renderer::render()
 {
+	glUniformMatrix4fv(RB->MatrixID, 1, GL_FALSE, RB->addressMVPa());
+	glUniformMatrix4fv(RB->ModelMatrixID, 1, GL_FALSE, RB->addressModelMatrix());
+	glUniformMatrix4fv(RB->ViewMatrixID, 1, GL_FALSE, RB->addressViewMatrix());
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, RB->vertexbuffer);
@@ -47,7 +51,7 @@ void Renderer::render(std::vector<glm::vec3> vertices)
 	);
 
 
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+	glDrawArrays(GL_TRIANGLES, 0, RB->vertices.size());
 
 
 	glDisableVertexAttribArray(0);
@@ -56,20 +60,15 @@ void Renderer::render(std::vector<glm::vec3> vertices)
 
 
 }
-void Renderer::MVPuniform(GLuint MatrixID, GLuint ModelMatrixID, GLuint ViewMatrixID)
-{
-	
-	glUniformMatrix4fv(MatrixID, 1, GL_FALSE,RB->addressMVPa());
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, RB->addressModelMatrix());
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, RB->addressViewMatrix());
-}
-void Renderer::clearNtext(GLuint Texture, GLuint TextureID)
+void Renderer::clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D,Texture);
-	glUniform1i(TextureID, 0);
+	glBindTexture(GL_TEXTURE_2D, RB->Texture);
+	glUniform1i(RB->TextureID, 0);
 }
+
+
 void Renderer::deletebuffer()
 {
 	

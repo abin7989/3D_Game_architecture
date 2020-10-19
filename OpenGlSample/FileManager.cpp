@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "FileManager.h"
-
+#include "RenderableObject.h"
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -13,7 +13,7 @@
 #define FOURCC_DXT1 0x31545844 // Equivalent to "DXT1" in ASCII
 #define FOURCC_DXT3 0x33545844 // Equivalent to "DXT3" in ASCII
 #define FOURCC_DXT5 0x35545844 // Equivalent to "DXT5" in ASCII
-bool loadOBJ(
+bool LoadObj(
 	const char* path,
 	std::vector<glm::vec3>& out_vertices,
 	std::vector<glm::vec2>& out_uvs,
@@ -298,36 +298,49 @@ GLuint LoadShaders(const char* vertex_file_path, const char* fragment_file_path)
 	return ProgramID;
 }
 
-void FileManager::setVertexArray()
-{
-	glGenVertexArrays(1, &this->VertexArrayID);
-	glBindVertexArray(this->VertexArrayID);
-}
 
-void FileManager::setprogramID(const char* a, const char* b)
-{
-	this->programID = LoadShaders(a, b);
 
-	this->MatrixID = glGetUniformLocation(programID, "MVP");
-	this->ViewMatrixID = glGetUniformLocation(programID, "V");
-	this->ModelMatrixID = glGetUniformLocation(programID, "M");
-	this->ModelMatrixID2 = glGetUniformLocation(programID, "M2");
-	this->LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
-	this->LightID2 = glGetUniformLocation(programID, "LightPosition_worldspace2");
-	glUseProgram(this->programID);
-}
-void FileManager::setobj(const char* a)
+
+void FileManager::loadObj(
+	const char* obj_path,
+	const char* texture_path,
+	const char* vs_shader_path,
+	const char* fs_shader_path
+)
 {
-	bool res = loadOBJ(a, this->vertices, this->uvs, this->normals);
-}
-void FileManager::setTexture(const char* a)
-{
-	this->Texture = loadDDS(a);
-	this->TextureID = glGetUniformLocation(this->programID, "myTextureSampler");
+	glGenVertexArrays(1, &target_RB->VertexArrayID);
+	glBindVertexArray(target_RB->VertexArrayID);
+
+	target_RB->programID = LoadShaders(vs_shader_path, fs_shader_path);
+
+	target_RB->MatrixID = glGetUniformLocation(target_RB->programID, "MVP");
+	target_RB->ViewMatrixID = glGetUniformLocation(target_RB->programID, "V");
+	target_RB->ModelMatrixID = glGetUniformLocation(target_RB->programID, "M");
+	target_RB->ModelMatrixID2 = glGetUniformLocation(target_RB->programID, "M2");
+	target_RB->LightID = glGetUniformLocation(target_RB->programID, "LightPosition_worldspace");
+	target_RB->LightID2 = glGetUniformLocation(target_RB->programID, "LightPosition_worldspace2");
+
+
+	target_RB->Texture = loadDDS(texture_path);
+	target_RB->TextureID = glGetUniformLocation(target_RB->programID, "myTextureSampler");
+	glUseProgram(target_RB->programID);
+
+	LoadObj(obj_path, target_RB->vertices, target_RB->uvs, target_RB->normals);
+	glGenBuffers(1, &target_RB->vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, target_RB->vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, target_RB->vertices.size() * sizeof(glm::vec3), &target_RB->vertices[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &target_RB->uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, target_RB->uvbuffer);
+	glBufferData(GL_ARRAY_BUFFER, target_RB->uvs.size() * sizeof(glm::vec2), &target_RB->uvs[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &target_RB->normalbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, target_RB->normalbuffer);
+	glBufferData(GL_ARRAY_BUFFER, target_RB->normals.size() * sizeof(glm::vec3), &target_RB->normals[0], GL_STATIC_DRAW);
 }
 void FileManager::deletebuffer()
 {
-	glDeleteProgram(programID);
-	glDeleteTextures(1, &this->Texture);
-	glDeleteVertexArrays(1, &this->VertexArrayID);
+	glDeleteProgram(target_RB->programID);
+	glDeleteTextures(1, &target_RB->Texture);
+	glDeleteVertexArrays(1, &target_RB->VertexArrayID);
 }

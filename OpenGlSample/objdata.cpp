@@ -1,25 +1,6 @@
 #include"objdata.h"
 
-void objdata::buildvertices(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals)
-{
-	glGenBuffers(1, &RB->vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, RB->vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 
-	glGenBuffers(1, &RB->uvbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, RB->uvbuffer);
-	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-
-	glGenBuffers(1, &RB->normalbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, RB->normalbuffer);
-	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
-}
-void objdata::deletebuffer()
-{
-	glDeleteBuffers(1, &RB->vertexbuffer);
-	glDeleteBuffers(1, &RB->uvbuffer);
-	glDeleteBuffers(1, &RB->normalbuffer);
-}
 void objdata::setMVP(glm::vec3 world_view)
 {
 	RB->ProjectionMatrix = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -34,16 +15,23 @@ void objdata::setMVP(glm::vec3 world_view)
 void objdata::setCubeRot(float rot_angle, glm::vec3 rot)
 {
 	RB->Rot = glm::rotate(RB->Rot, glm::radians(rot_angle), rot);
+	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
 }
 void objdata::settrans(glm::vec3 t)
 {
 	RB->trans = glm::translate(RB->trans, t);
 }
-void objdata::getMVP()
+void objdata::setLight(glm::vec3 lightPos)
 {
-	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
+	glUniform3f(RB->LightID, lightPos.x, lightPos.y, lightPos.z);
 }
-void objdata::setLight(GLuint LightID, glm::vec3 lightPos)
+void objdata::setLight2(glm::vec3 lightPos)
 {
-	glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(RB->LightID2, lightPos.x, lightPos.y, lightPos.z);
+}
+void objdata::deletebuffer()
+{
+	glDeleteBuffers(1, &RB->vertexbuffer);
+	glDeleteBuffers(1, &RB->uvbuffer);
+	glDeleteBuffers(1, &RB->normalbuffer);
 }

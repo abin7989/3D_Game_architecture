@@ -11,6 +11,22 @@
 class RenderableObject : public Object
 {
 public:
+
+	GLuint VertexArrayID;
+	GLuint programID;
+	GLuint MatrixID;
+	GLuint ViewMatrixID;
+	GLuint ModelMatrixID;
+	GLuint ModelMatrixID2;
+	GLuint LightID;
+	GLuint LightID2;
+	GLuint Texture;
+	GLuint TextureID;
+
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals;
+
 	RenderableObject();
 
 	GLuint vertexbuffer;

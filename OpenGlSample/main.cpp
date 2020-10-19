@@ -42,29 +42,28 @@ int main(void)
 	sw->windowcolor(0.0f, 0.0f, 0.4f, 0.0f);
 	sw->setdepth(GL_DEPTH_TEST, GL_LESS, GL_CULL_FACE);
 
-
-
-	//shader setting,Use 
-	//load obj,texture
-	FileManager* fm = new FileManager;
-	fm->setVertexArray();
-	fm->setprogramID("20161364_vs.shader","20161364_fs.shader");
-	fm->setobj("cube.obj");
-	fm->setTexture("uvtemplate.DDS");
+	FileManager* file =new FileManager;
+	RenderableObject* cube1 = new RenderableObject;
+	file->gettarget(cube1);
+	file->loadObj(
+		"cube.obj",
+		"uvtemplate.DDS",
+		"20161364_vs.shader",
+		"20161364_fs.shader"
+		);
 
 	// MVP setting
-	RenderableObject* cube1 = new RenderableObject;
+	
 	objdata* cubeobj = new objdata(cube1);
-	cubeobj->buildvertices(fm->getvertices(), fm->getuvs(), fm->getnormals());
 	cubeobj->setMVP(glm::vec3(8, 6, 6));
-	cubeobj->setLight(fm->getLightID(), glm::vec3(0, 0, 10));
-	cubeobj->setLight(fm->getLightID2(), glm::vec3(0, 0, 10));
+	cubeobj->setLight(glm::vec3(0, 0, 10));
+	cubeobj->setLight2(glm::vec3(0, 0, 10));
 	cubeobj->settrans(glm::vec3(0.0f, 0.0f, 0.0f));
 
 
 	//sphere의 정점 정보만을 입력하기 위해 렌더러 오브젝트와 파일매니저 생성.
-	RenderableObject* sp = new RenderableObject;
 	FileManager* fm2 = new FileManager;
+	RenderableObject* sp = new RenderableObject;
 	sphere* sphere1 = new sphere(sp, fm2);
 
 	//spher를 제외한 다른 오브젝트 설정 불가.
@@ -77,14 +76,10 @@ int main(void)
 
 	do {
 		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
-		cubeobj->getMVP();
+		drawcube1->clear();
 
-		drawcube1->clearNtext(fm->getTexture(), fm->getTextureID());
-		drawcube1->MVPuniform(fm->getMatrixID(), fm->getModelMatrixID(), fm->getViewMatrixID());
-		drawcube1->render(fm->getvertices());
-		
-		drawsphere->MVPuniform(fm2->getMatrixID(), fm2->getModelMatrixID(), fm2->getViewMatrixID());
-		drawsphere->render(fm2->getvertices());
+		drawcube1->render();
+		drawsphere->render();
 
 		sw->Swapbuffers();
 	} // Check if the ESC key was pressed or the window was closed
@@ -94,8 +89,7 @@ int main(void)
 	// Cleanup VBO and shader
 	cube1->deletebuffer();
 	sp->deletebuffer();
-	fm->deletebuffer();
-	fm2->deletebuffer();
+	file->deletebuffer();
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
