@@ -10,7 +10,16 @@
 #pragma comment(lib, "lib-vc2017/glfw3.lib")
 void Renderer::render()
 {
-	glUniformMatrix4fv(RB->MatrixID, 1, GL_FALSE, RB->addressMVPa());
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, Texture);
+	//glUniform1i(TextureID, 0);
+
+	for (int i=0;i<RenderList.size() ;i++)
+	{
+		RenderableObject* RB = RenderList.at(i);
+		glUniformMatrix4fv(RB->MatrixID, 1, GL_FALSE, RB->addressMVPa());
 	glUniformMatrix4fv(RB->ModelMatrixID, 1, GL_FALSE, RB->addressModelMatrix());
 	glUniformMatrix4fv(RB->ViewMatrixID, 1, GL_FALSE, RB->addressViewMatrix());
 
@@ -57,22 +66,19 @@ void Renderer::render()
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
-
+	}
 
 }
-void Renderer::clear()
+
+void Renderer::addObject(RenderableObject* render_obj)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, RB->Texture);
-	glUniform1i(RB->TextureID, 0);
+	RenderList.push_back(render_obj);
 }
-
 
 void Renderer::deletebuffer()
 {
 	
-	glDeleteBuffers(1, &RB->vertexbuffer);
-	glDeleteBuffers(1, &RB->uvbuffer);
-	glDeleteBuffers(1, &RB->normalbuffer);
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &uvbuffer);
+	glDeleteBuffers(1, &normalbuffer);
 }

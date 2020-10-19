@@ -69,17 +69,19 @@ int main(void)
 	//spher를 제외한 다른 오브젝트 설정 불가.
 	sphere1->setsphere();
 
-	
-	Renderer* drawcube1 = new Renderer(cube1);
-	Renderer* drawsphere = new Renderer(sp);
+	Renderer* render = new Renderer;
+	render->addObject(cube1);
+	render->addObject(sp);
+	//Renderer* drawcube1 = new Renderer(cube1);
+	//Renderer* drawsphere = new Renderer(sp);
 
 
 	do {
 		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
-		drawcube1->clear();
-
-		drawcube1->render();
-		drawsphere->render();
+		//drawcube1->clear();
+		render->render();
+		//drawcube1->render();
+		//drawsphere->render();
 
 		sw->Swapbuffers();
 	} // Check if the ESC key was pressed or the window was closed
