@@ -75,15 +75,15 @@ int main(void)
 	//spher를 제외한 다른 오브젝트 설정 불가.
 	sphere1->setsphere();
 
-	NonRenderableObject* a = new NonRenderableObject;
-
+	NonRenderableObject* ann = new NonRenderableObject;
+	render->addupdate(ann);
 	do {
 		//큐브의 회전 설정
 		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
 
-		render->update(a);
-		render->render();
 
+		render->render();
+		render->update();
 		sw->Swapbuffers();
 	} 
 	while (sw->checkwindow());

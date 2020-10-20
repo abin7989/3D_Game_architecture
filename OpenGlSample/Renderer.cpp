@@ -73,10 +73,7 @@ void Renderer::addObject(IRenderer* render_obj)
 {
 	RenderList.push_back(render_obj->render());
 }
-void Renderer::update(IUpdater* nonrender_obj)
-{
-	nonrender_obj->update();
-}
+
 void Renderer::deletebuffer()
 {
 
@@ -87,3 +84,16 @@ void Renderer::deletebuffer()
 		RB->deletebuffer();
 	}
 }
+
+void Renderer::update()
+{
+	for (int i = 0; i < NonRenderList.size(); i++)
+	{
+	NonRenderList.at(i);
+	}
+}
+void Renderer::addupdate(IUpdater* nonrender_obj)
+{
+	NonRenderList.push_back(nonrender_obj->update());
+}
+

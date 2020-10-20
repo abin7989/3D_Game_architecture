@@ -1,14 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
+
 #include "FileManager.h"
 #include "RenderableObject.h"
-#include <stdio.h>
-#include <string>
 #include <vector>
-#include <iostream>
 #include <fstream>
-#include <algorithm>
 #include <sstream>
-#include <stdlib.h>
 
 #define FOURCC_DXT1 0x31545844 // Equivalent to "DXT1" in ASCII
 #define FOURCC_DXT3 0x33545844 // Equivalent to "DXT3" in ASCII
