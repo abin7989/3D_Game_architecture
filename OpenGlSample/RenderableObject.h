@@ -1,14 +1,16 @@
 #pragma once
+#include <iostream>
 
-
+#include <stdio.h>
 #include "Object.h"
+#include "IRenderer.h"
 #include "include/GL/glew.h"
 #include "include/GLFW/glfw3.h" 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
 
-class RenderableObject : public Object
+class RenderableObject : public Object,public IRenderer
 {
 public:
 
@@ -46,4 +48,5 @@ public:
 
 	////정점정보 delete
 	virtual void deletebuffer() override;
+	virtual RenderableObject* render() override { return this; };
 };

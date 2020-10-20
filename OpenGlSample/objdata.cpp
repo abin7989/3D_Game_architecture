@@ -31,7 +31,5 @@ void objdata::setLight2(glm::vec3 lightPos)
 }
 void objdata::deletebuffer()
 {
-	glDeleteBuffers(1, &RB->vertexbuffer);
-	glDeleteBuffers(1, &RB->uvbuffer);
-	glDeleteBuffers(1, &RB->normalbuffer);
+	RB->deletebuffer();
 }

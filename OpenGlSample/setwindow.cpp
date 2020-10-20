@@ -5,7 +5,7 @@ setwindow::setwindow(int a, int b)
 	width = a;
 	length = b;
 }
-void setwindow::Createwindow(const char* windowname, GLFWmonitor* a, GLFWwindow* b)
+void setwindow::Createwindow(const char* windowname)
 {
 	if (!glfwInit())
 	{
@@ -19,7 +19,7 @@ void setwindow::Createwindow(const char* windowname, GLFWmonitor* a, GLFWwindow*
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(width, length, windowname, a, b);
+	window = glfwCreateWindow(width, length, windowname, NULL, NULL);
 	if (window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		getchar();
@@ -55,4 +55,14 @@ void setwindow::Swapbuffers()
 	// Swap buffers
 	glfwSwapBuffers(this->window);
 	glfwPollEvents();
+}
+
+bool setwindow::checkwindow()
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+		glfwWindowShouldClose(window) == 0)
+	{
+		return true;
+	}
+	return false;
 }

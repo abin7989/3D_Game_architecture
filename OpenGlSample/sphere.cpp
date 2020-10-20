@@ -29,7 +29,5 @@ void sphere::setsphere()
 
 void sphere::deletebuffer()
 {
-	glDeleteBuffers(1, &RB->vertexbuffer);
-	glDeleteBuffers(1, &RB->uvbuffer);
-	glDeleteBuffers(1, &RB->normalbuffer);
+	RB->deletebuffer();
 }

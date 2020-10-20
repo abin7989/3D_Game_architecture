@@ -17,7 +17,7 @@ public:
 	setwindow(int a, int b);
 	inline GLFWwindow* getwindow() const { return window; };
 	//윈도우 생성
-	void Createwindow(const char* windowname, GLFWmonitor* a, GLFWwindow* b);
+	void Createwindow(const char* windowname);
 	//마우스위치 조정
 	void setmiddlemouse();
 	//윈도우 창 색상
@@ -26,4 +26,6 @@ public:
 	void setdepth(GLenum cap, GLenum func, GLenum endc);
 	//버퍼 교환
 	void Swapbuffers();
+	// Check if the ESC key was pressed or the window was closed
+	bool checkwindow();
 };

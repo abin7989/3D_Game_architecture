@@ -1,7 +1,12 @@
 #pragma once
+#include <iostream>
 
+#include <stdio.h>
 #include "Object.h"
-class NonRenderableObject : public Object
+#include "IUpdater.h"
+class NonRenderableObject : public Object, public IUpdater
 {
-
+public:
+	virtual void deletebuffer() override {};
+	virtual void update() override {};
 };

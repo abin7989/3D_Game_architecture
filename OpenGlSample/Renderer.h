@@ -1,17 +1,19 @@
 #pragma once
 #include "Object.h"
 #include "RenderableObject.h"
+#include "ICleanUp.h"
+#include "IRenderer.h"
+#include "IUpdater.h"
 #include <vector>
-class Renderer:public RenderableObject
+class IUpdater;
+class Renderer :public ICleanUp
 {
 private:
-	//RenderableObject* RBO;
 	std::vector<RenderableObject*> RenderList;
 public:
-	//Renderer(RenderableObject* a) { RBO = a; };
-	//화면에 그리기
 	void render();
-	void addObject(RenderableObject* render_obj);
+	void addObject(IRenderer* render_obj);
+	void update(IUpdater* nonrender_obj);
 	virtual void deletebuffer() override;
-	
+
 };

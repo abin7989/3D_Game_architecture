@@ -21,6 +21,7 @@
 #include "Renderer.h"
 #include "FileManager.h"
 #include "RenderableObject.h"
+#include "NonRenderableObject.h"
 #include "sphere.h"
 #include "objdata.h"
 
@@ -37,13 +38,18 @@ int main(void)
 {
 	//window setting;
 	setwindow* sw = new setwindow(1024,768);
-	sw->Createwindow("report", NULL, NULL);
-	sw->setmiddlemouse();
+	sw->Createwindow("report");
+	//sw->setmiddlemouse();
 	sw->windowcolor(0.0f, 0.0f, 0.4f, 0.0f);
 	sw->setdepth(GL_DEPTH_TEST, GL_LESS, GL_CULL_FACE);
 
+
+	Renderer* render = new Renderer;
 	FileManager* file =new FileManager;
 	RenderableObject* cube1 = new RenderableObject;
+	render->addObject(cube1);
+
+	//cube1의 obj
 	file->gettarget(cube1);
 	file->loadObj(
 		"cube.obj",
@@ -53,7 +59,6 @@ int main(void)
 		);
 
 	// MVP setting
-	
 	objdata* cubeobj = new objdata(cube1);
 	cubeobj->setMVP(glm::vec3(8, 6, 6));
 	cubeobj->setLight(glm::vec3(0, 0, 10));
@@ -62,36 +67,34 @@ int main(void)
 
 
 	//sphere의 정점 정보만을 입력하기 위해 렌더러 오브젝트와 파일매니저 생성.
-	FileManager* fm2 = new FileManager;
+	FileManager* file2 = new FileManager;
 	RenderableObject* sp = new RenderableObject;
-	sphere* sphere1 = new sphere(sp, fm2);
+	render->addObject(sp);
+	sphere* sphere1 = new sphere(sp, file2);
 
 	//spher를 제외한 다른 오브젝트 설정 불가.
 	sphere1->setsphere();
 
-	Renderer* render = new Renderer;
-	render->addObject(cube1);
-	render->addObject(sp);
-	//Renderer* drawcube1 = new Renderer(cube1);
-	//Renderer* drawsphere = new Renderer(sp);
-
+	NonRenderableObject* a = new NonRenderableObject;
 
 	do {
+		//큐브의 회전 설정
 		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
-		//drawcube1->clear();
+
+		render->update(a);
 		render->render();
-		//drawcube1->render();
-		//drawsphere->render();
 
 		sw->Swapbuffers();
-	} // Check if the ESC key was pressed or the window was closed
-	while (glfwGetKey(sw->getwindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-		glfwWindowShouldClose(sw->getwindow()) == 0);
+	} 
+	while (sw->checkwindow());
 
-	// Cleanup VBO and shader
-	cube1->deletebuffer();
-	sp->deletebuffer();
-	file->deletebuffer();
+	render->deletebuffer();
+
+	delete sp;
+	delete cube1;
+	delete file;
+	delete file2;
+	delete render;
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
