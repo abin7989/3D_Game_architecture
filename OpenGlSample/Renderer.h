@@ -13,10 +13,7 @@ private:
 	std::vector<RenderableObject*> RenderList;
 	std::vector<int> NonRenderList;
 public:
-	int xp = 0;
-	float ran = 0;
 	void render();
-	void gamecontrol();
 	void addObject(IRenderer* render_obj);
 	void update();
 	void addupdate(IUpdater* nonrender_obj);

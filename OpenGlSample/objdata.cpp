@@ -17,12 +17,9 @@ void objdata::setCubeRot(float rot_angle, glm::vec3 rot)
 	RB->Rot = glm::rotate(RB->Rot, glm::radians(rot_angle), rot);
 	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
 }
-void objdata::settrans(float speed , glm::vec3 t)
+void objdata::settrans(glm::vec3 t)
 {
-	a +=speed;
-	z_point += t.z;
 	RB->trans = glm::translate(RB->trans, t);
-	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
 }
 void objdata::setLight(glm::vec3 lightPos)
 {

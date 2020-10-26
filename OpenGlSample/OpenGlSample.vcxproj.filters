@@ -1204,8 +1204,6 @@
     </None>
     <None Include="20161364_fs.shader" />
     <None Include="20161364_vs.shader" />
-    <None Include="TextVertexShader.vertexshader" />
-    <None Include="TextVertexShader.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

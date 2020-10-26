@@ -11,7 +11,6 @@
 #include <sstream>
 #include <stdlib.h>
 #include <math.h>
-#include <conio.h>
 
 #include "include/GL/glew.h"
 #include "include/GLFW/glfw3.h" 
@@ -34,10 +33,6 @@
 
 using namespace glm;
 using namespace std;
-
-
-
-
 
 int main(void)
 {
@@ -65,11 +60,10 @@ int main(void)
 
 	// MVP setting
 	objdata* cubeobj = new objdata(cube1);
-	cubeobj->setMVP(glm::vec3(25,0,0));
+	cubeobj->setMVP(glm::vec3(8, 6, 6));
 	cubeobj->setLight(glm::vec3(0, 0, 10));
 	cubeobj->setLight2(glm::vec3(0, 0, 10));
-	float speed = -0.1f;
-	cubeobj->settrans(speed,glm::vec3(0.0f,10.0f, 0.0f));
+	cubeobj->settrans(glm::vec3(0.0f, 0.0f, 0.0f));
 
 
 	//sphere의 정점 정보만을 입력하기 위해 렌더러 오브젝트와 파일매니저 생성.
@@ -80,45 +74,14 @@ int main(void)
 
 	//spher를 제외한 다른 오브젝트 설정 불가.
 	sphere1->setsphere();
+
 	NonRenderableObject* ann = new NonRenderableObject;
 	render->addupdate(ann);
-	int xp = 0;
-	float ran = 0;
 	do {
 		//큐브의 회전 설정
-
-		if (glfwGetKey(sw->getwindow(), GLFW_KEY_A) == GLFW_PRESS)
-		{
-			sphere1->settrans(glm::vec3(0.0f, 0.0f, -speed));
-		}
-		if (glfwGetKey(sw->getwindow(), GLFW_KEY_D) == GLFW_PRESS)
-		{
-			sphere1->settrans(glm::vec3(0.0f, 0.0f, speed));
-		}
-		//게임 오버
-		if (cubeobj->a<2)
-		{
-			float a = cubeobj->z_point;
-			if (
-				a - 2.0f < sphere1->z_point &&
-				a + 2.0f > sphere1->z_point
-				)
-			{
-				ran = rand() % 21;
-				ran = ran - 10 - cubeobj->z_point;
-				cubeobj->settrans(speed,glm::vec3(0.0f, 22.0f-cubeobj->a, ran));
-				cubeobj->a = 22;
-				speed += -0.02f;
-			}
-
-		}
-		if (cubeobj->a < -2.0)
-		{
-			glfwSetWindowShouldClose(sw->getwindow(), true);
-				
-		}
-		cubeobj->settrans(speed,glm::vec3(0.0f, speed, 0.0f));
 		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
+
+
 		render->render();
 		render->update();
 		sw->Swapbuffers();
