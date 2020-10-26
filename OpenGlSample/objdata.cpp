@@ -17,10 +17,7 @@ void objdata::setCubeRot(float rot_angle, glm::vec3 rot)
 	RB->Rot = glm::rotate(RB->Rot, glm::radians(rot_angle), rot);
 	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
 }
-void objdata::settrans(glm::vec3 t)
-{
-	RB->trans = glm::translate(RB->trans, t);
-}
+
 void objdata::setLight(glm::vec3 lightPos)
 {
 	glUniform3f(RB->LightID, lightPos.x, lightPos.y, lightPos.z);
@@ -28,6 +25,14 @@ void objdata::setLight(glm::vec3 lightPos)
 void objdata::setLight2(glm::vec3 lightPos)
 {
 	glUniform3f(RB->LightID2, lightPos.x, lightPos.y, lightPos.z);
+}
+
+void objdata::settrans(float speed, glm::vec3 t)
+{
+	a += speed;
+	z_point += t.z;
+	RB->trans = glm::translate(RB->trans, t);
+	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
 }
 void objdata::deletebuffer()
 {
