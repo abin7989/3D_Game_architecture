@@ -77,7 +77,6 @@ void Renderer::addObject(IRenderer* render_obj)
 void Renderer::deletebuffer()
 {
 
-
 	for (int i = 0; i < RenderList.size(); i++)
 	{
 		RenderableObject* RB = RenderList.at(i);

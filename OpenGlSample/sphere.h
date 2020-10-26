@@ -12,12 +12,17 @@ private:
 	FileManager* FM;
 
 public:
-
-	sphere(RenderableObject* c, FileManager* d)
+	int Distinction;
+	float y_point = 0;
+	float z_point = 0;
+	sphere(RenderableObject* c, FileManager* d,int a)
 	{
+		Distinction = a;
 		RB = c;
 		FM = d;
 	}
+
+	void settrans(glm::vec3 t);
 	void setsphere();
 	virtual void deletebuffer() override;
 };
