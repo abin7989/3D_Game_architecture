@@ -24,6 +24,7 @@
 #include "NonRenderableObject.h"
 #include "sphere.h"
 #include "objdata.h"
+#include "gamecontroller.h"
 
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "lib-vc2017/glew32.lib")
@@ -76,47 +77,16 @@ int main(void)
 	//spher를 제외한 다른 오브젝트 설정 불가.
 	sphere1->setsphere();
 
-	NonRenderableObject* ann = new NonRenderableObject;
+	//화면에 안보이는 컨트롤
+	gamecontroller* ann = new gamecontroller;
+	//컨트롤 대상,회피할 오브젝트
+	ann->getunit(sphere1, cubeobj, sw);
+	//업데이트에 추가
 	render->addupdate(ann);
-	int xp = 0;
-	float ran = 0;
 	
 	do {
-
-		if (glfwGetKey(sw->getwindow(), GLFW_KEY_A) == GLFW_PRESS)
-		{
-			sphere1->settrans(glm::vec3(0.0f, 0.0f, -speed));
-		}
-		if (glfwGetKey(sw->getwindow(), GLFW_KEY_D) == GLFW_PRESS)
-		{
-			sphere1->settrans(glm::vec3(0.0f, 0.0f, speed));
-		}
-		if (cubeobj->a < 2)
-		{
-			float a = cubeobj->z_point;
-			if (
-				a - 2.0f < sphere1->z_point &&
-				a + 2.0f > sphere1->z_point
-				)
-			{
-				ran = rand() % 21;
-				ran = ran - 10 - cubeobj->z_point;
-				cubeobj->settrans(speed, glm::vec3(0.0f, 22.0f - cubeobj->a, ran));
-				cubeobj->a = 22;
-				speed += -0.02f;
-			}
-
-		}
-		if (cubeobj->a < -2.0)
-		{
-			glfwSetWindowShouldClose(sw->getwindow(), true);
-
-		}
-		cubeobj->settrans(speed, glm::vec3(0.0f, speed, 0.0f));
-		cubeobj->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
-
-
 		render->render();
+		//화면에 보이진 않지만 실행 가능.
 		render->update();
 		sw->Swapbuffers();
 	} 
@@ -129,6 +99,7 @@ int main(void)
 	delete file;
 	delete file2;
 	delete render;
+	delete ann;
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();

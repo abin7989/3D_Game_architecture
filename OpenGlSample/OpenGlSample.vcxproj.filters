@@ -795,7 +795,10 @@
     <ClInclude Include="IRenderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="IUpdater.h">
+    <ClInclude Include="gamecontroller.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IU.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1231,6 +1234,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="NonRenderableObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gamecontroller.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

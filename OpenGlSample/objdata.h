@@ -18,7 +18,7 @@ public:
 		RB = a;
 	}
 
-	float a = 20;
+	float arrive= 20;
 	float z_point = 0;
 
 	//정점 정보 obj통해 받기.
@@ -34,4 +34,5 @@ public:
 	void setLight(glm::vec3 lightPos);
 	void setLight2(glm::vec3 lightPos);
 	virtual void deletebuffer() override;
+	virtual RenderableObject* render() override { return this; };
 };

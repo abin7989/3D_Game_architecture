@@ -89,11 +89,12 @@ void Renderer::update()
 {
 	for (int i = 0; i < NonRenderList.size(); i++)
 	{
-	NonRenderList.at(i);
+		NonRenderList[i]->up();
 	}
 }
-void Renderer::addupdate(IUpdater* nonrender_obj)
+void Renderer::addupdate(IU* nonrender_obj)
 {
-	NonRenderList.push_back(nonrender_obj->update());
+	NonRenderList.push_back(nonrender_obj);
+
 }
 

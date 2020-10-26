@@ -29,7 +29,7 @@ void objdata::setLight2(glm::vec3 lightPos)
 
 void objdata::settrans(float speed, glm::vec3 t)
 {
-	a += speed;
+	arrive += speed;
 	z_point += t.z;
 	RB->trans = glm::translate(RB->trans, t);
 	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->ModelMatrix;
