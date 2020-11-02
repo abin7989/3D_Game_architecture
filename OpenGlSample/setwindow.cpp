@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include "setwindow.h"
 
 setwindow::setwindow(int a, int b)

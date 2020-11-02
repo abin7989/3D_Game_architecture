@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <Windows.h>
 #include "include/GL/glew.h"
 #include "include/GLFW/glfw3.h" 
 #include "glm/glm.hpp"
@@ -12,8 +12,9 @@ private:
 	int width;
 	int length;
 	GLFWwindow* window;
-
+	
 public:
+
 	setwindow(int a, int b);
 	inline GLFWwindow* getwindow() const { return window; };
 	//윈도우 생성

@@ -4,10 +4,6 @@
 #include <stdio.h>
 #include "Object.h"
 #include "IRenderer.h"
-#include "include/GL/glew.h"
-#include "include/GLFW/glfw3.h" 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 
 
 class RenderableObject : public Object,public IRenderer

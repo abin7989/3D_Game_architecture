@@ -377,6 +377,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="setwindow.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="20161364_fs.shader" />
@@ -527,6 +528,10 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="setwindow.cpp" />
     <ClCompile Include="sphere.cpp" />
+    <ClCompile Include="Time.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\Kim\Desktop\AA.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

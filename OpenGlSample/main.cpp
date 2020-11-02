@@ -17,7 +17,6 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "setwindow.h"
-#include "Object.h"
 #include "Renderer.h"
 #include "FileManager.h"
 #include "RenderableObject.h"
@@ -25,6 +24,7 @@
 #include "sphere.h"
 #include "objdata.h"
 #include "gamecontroller.h"
+#include "Time.h"
 
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "lib-vc2017/glew32.lib")
@@ -43,7 +43,11 @@ int main(void)
 	//sw->setmiddlemouse();
 	sw->windowcolor(0.0f, 0.0f, 0.4f, 0.0f);
 	sw->setdepth(GL_DEPTH_TEST, GL_LESS, GL_CULL_FACE);
-
+	
+	
+	Time* time = new Time;
+	//프레임 고정시 필요한 설정
+	time->setTime();
 
 	Renderer* render = new Renderer;
 	FileManager* file =new FileManager;
@@ -83,12 +87,21 @@ int main(void)
 	ann->getunit(sphere1, cubeobj, sw);
 	//업데이트에 추가
 	render->addupdate(ann);
-	
+
 	do {
-		render->render();
-		//화면에 보이진 않지만 실행 가능.
-		render->update();
-		sw->Swapbuffers();
+		//고정 프레임
+		if (time->isRenderTiming())
+		{
+			//화면에 보이진 않지만 실행 가능.
+			render->update();
+		}
+
+		//가변 프레임
+		if (time->isvariableTiming())
+		{
+			render->render();
+			sw->Swapbuffers();
+		}
 	} 
 	while (sw->checkwindow());
 
@@ -100,7 +113,7 @@ int main(void)
 	delete file2;
 	delete render;
 	delete ann;
-
+	delete time;
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 
