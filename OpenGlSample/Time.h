@@ -13,7 +13,10 @@ private:
 	LARGE_INTEGER _nowFrameCounter;
 
 public:
-
+	Time()
+	{
+		setTime();
+	}
 	void setTime();
 
 	//고정 프레임

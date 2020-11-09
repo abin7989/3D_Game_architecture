@@ -8,10 +8,18 @@
 
 class Renderer :public ICleanUp
 {
+public:
+	static Renderer* instance()
+	{
+		static Renderer instance;
+		return &instance;
+	}
 private:
 	std::vector<RenderableObject*> RenderList;
 	std::vector<IU*> NonRenderList;
 public:
+	
+
 	void render();
 	void addObject(IRenderer* render_obj);
 	void update();

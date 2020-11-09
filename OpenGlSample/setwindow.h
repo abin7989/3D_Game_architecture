@@ -14,8 +14,12 @@ private:
 	GLFWwindow* window;
 	
 public:
-
-	setwindow(int a, int b);
+	static setwindow* instance()
+	{
+		static setwindow instance;
+		return &instance;
+	}
+	void setwindowsize(int a, int b);
 	inline GLFWwindow* getwindow() const { return window; };
 	//윈도우 생성
 	void Createwindow(const char* windowname);

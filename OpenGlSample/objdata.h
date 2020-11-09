@@ -1,6 +1,6 @@
 #pragma once
 
-#include"RenderableObject.h"
+#include "RenderableObject.h"
 #include "include/GL/glew.h"
 #include "include/GLFW/glfw3.h" 
 #include "glm/glm.hpp"
@@ -8,15 +8,16 @@
 
 class objdata :public RenderableObject
 {
+
 private:
 	RenderableObject* RB;
-
+	
 public:
-	int Distinction;
-	objdata(RenderableObject* a)
+	objdata()
 	{
-		RB = a;
+		init();
 	}
+	int Distinction;
 
 	float arrive= 20;
 	float z_point = 0;
@@ -33,6 +34,7 @@ public:
 	//ºû »ç¿ë
 	void setLight(glm::vec3 lightPos);
 	void setLight2(glm::vec3 lightPos);
+	void init();
 	virtual void deletebuffer() override;
 	virtual RenderableObject* render() override { return this; };
 };

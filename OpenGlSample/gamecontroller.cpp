@@ -1,7 +1,7 @@
 #include "gamecontroller.h"
 
 void gamecontroller::gameControll() {
-	if (glfwGetKey(sw->getwindow(), GLFW_KEY_ENTER) == GLFW_PRESS)
+	if (glfwGetKey(setwindow::instance()->getwindow(), GLFW_KEY_ENTER) == GLFW_PRESS)
 	{
 		gamestart = true;
 	}

@@ -11,9 +11,15 @@ class RenderableObject;
 class FileManager :public ICleanUp
 {
 public:
+	static FileManager* instance()
+	{
+		static FileManager instance;
+		return &instance;
+	}
+public:
 	RenderableObject* target_RB;
-	GLuint LoadShaders(const char* vertex_file_path, const char* fragment_file_path);
 	void gettarget(RenderableObject* a) { target_RB = a; };
+	GLuint LoadShaders(const char* vertex_file_path, const char* fragment_file_path);
 	void loadObj(
 		const char* obj_path,
 		const char* texture_path,

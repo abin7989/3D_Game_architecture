@@ -1,13 +1,15 @@
 #include<stdio.h>
 #include "setwindow.h"
 
-setwindow::setwindow(int a, int b)
+void setwindow::setwindowsize(int a, int b)
 {
 	width = a;
 	length = b;
 }
 void setwindow::Createwindow(const char* windowname)
 {
+
+
 	if (!glfwInit())
 	{
 		fprintf(stderr, "Failed to initialize GLFW\n");
