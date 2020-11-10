@@ -5,6 +5,7 @@
 #include "include/GLFW/glfw3.h" 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+
 class sphere :public RenderableObject
 {
 private:
@@ -22,4 +23,6 @@ public:
 	void settrans(glm::vec3 t);
 	void setsphere();
 	virtual void deletebuffer() override;
+	virtual void up() override {};
+	virtual void render() override { Renderer::instance()->render(this); };
 };

@@ -2,13 +2,22 @@
 #include <iostream>
 
 #include <stdio.h>
+
 #include "Object.h"
 #include "IRenderer.h"
+#include "ObjectRenderer.h"
 
-
+#include "Renderer.h"
 class RenderableObject : public Object,public IRenderer
 {
+	
 public:
+	RenderableObject()
+	{
+		Rot = glm::mat4(1.0f);
+		trans = glm::mat4(1.0f);
+		ObjectRenderer::instance()->addObject(this);
+	}
 
 	GLuint VertexArrayID;
 	GLuint programID;
@@ -23,8 +32,6 @@ public:
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
-
-	RenderableObject();
 
 	GLuint vertexbuffer;
 	GLuint uvbuffer;
@@ -41,7 +48,10 @@ public:
 	const GLfloat* addressMVPa() { return &MVP[0][0]; };
 	const GLfloat* addressModelMatrix() { return &ModelMatrix[0][0]; };
 
+	
 	////정점정보 delete
-	virtual void deletebuffer() override;
-	virtual RenderableObject* render() override { return this; };
+	virtual void deletebuffer() override ;
+	virtual void render() override {};
+	virtual void init() override {};
+	virtual void up() override {};
 };

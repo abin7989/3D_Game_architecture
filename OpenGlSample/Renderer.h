@@ -1,12 +1,20 @@
 #pragma once
-#include "Object.h"
-#include "RenderableObject.h"
-#include "gamecontroller.h"
-#include "ICleanUp.h"
-#include "IRenderer.h"
-#include <vector>
 
-class Renderer :public ICleanUp
+#include <vector>
+#include "RenderableObject.h"
+
+#include "include/GL/glew.h"
+#include "include/GLFW/glfw3.h" 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
+
+#pragma comment(lib, "OpenGL32.lib")
+#pragma comment(lib, "lib-vc2017/glew32.lib")
+#pragma comment(lib, "lib-vc2017/glfw3.lib")
+
+
+class Renderer
 {
 public:
 	static Renderer* instance()
@@ -14,16 +22,9 @@ public:
 		static Renderer instance;
 		return &instance;
 	}
-private:
-	std::vector<RenderableObject*> RenderList;
-	std::vector<IU*> NonRenderList;
+
 public:
+
 	
-
-	void render();
-	void addObject(IRenderer* render_obj);
-	void update();
-	void addupdate(IU* nonrender_obj);
-	virtual void deletebuffer() override;
-
+	void render(RenderableObject* RB);
 };

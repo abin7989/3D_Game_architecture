@@ -16,6 +16,7 @@ private:
 public:
 	static setwindow* instance()
 	{
+
 		static setwindow instance;
 		return &instance;
 	}

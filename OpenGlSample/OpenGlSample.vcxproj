@@ -374,6 +374,7 @@
     <ClInclude Include="NonRenderableObject.h" />
     <ClInclude Include="objdata.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDelete.h" />
     <ClInclude Include="ObjectInit.h" />
     <ClInclude Include="ObjectRenderer.h" />
     <ClInclude Include="ObjectUpdater.h" />
@@ -381,6 +382,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="setwindow.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="testnonrender.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>

@@ -22,8 +22,8 @@ bool Time::isRenderTiming()
 		{
 			fprintf(stdout, "1 second\n");
 			count = 0;
-		}
 
+		}
 		return true;
 	}
 	return false;

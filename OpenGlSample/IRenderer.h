@@ -3,5 +3,5 @@
 class IRenderer
 {
 public:
-	virtual RenderableObject* render() = 0;
+	virtual void render() = 0;
 };
