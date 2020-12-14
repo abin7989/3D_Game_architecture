@@ -51,5 +51,9 @@ void objdata::init()
 	setLight(glm::vec3(0, 0, 10));
 	setLight2(glm::vec3(0, 0, 10));
 	float speed = -0.1f;
-	settrans(speed, Point(0.0f, 10.0f, 0.0f));
+	settrans(speed, glm::vec3(0.0f, 10.0f, 0.0f));
+}
+
+void objdata::up()
+{
 }

@@ -25,8 +25,8 @@ void gamecontroller::gameControll() {
 		{
 			sp->settrans(glm::vec3(0.0f, speed,0.0f));
 		}
-		printf("%f\n", sp->pointy);
-		if (ob->pointy<sp->pointy+2&& ob->pointz < sp->pointz + 2)
+		//printf("%f\n", sp->pointy);
+		if (ob->pointy < sp->pointy + 2&& ob->pointz < sp->pointz + 2)
 		{
 			float a = ob->pointz;
 			if (
@@ -42,7 +42,7 @@ void gamecontroller::gameControll() {
 			}
 
 		}
-		if (ob->pointy < -0)
+		if (ob->pointy < -10)
 		{
 			glfwSetWindowShouldClose(sw->getwindow(), true);
 

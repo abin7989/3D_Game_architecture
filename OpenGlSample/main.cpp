@@ -58,22 +58,29 @@ int main(void)
 	ObjectDelete* objdelete = ObjectDelete::instance();
 	ObjectInit* objinit = ObjectInit::instance();
 	ObjectRenderer* objrender = ObjectRenderer::instance();
-
+	CompositeObj* comp = new CompositeObj();
 	//큐브 생성
 	objdata* cubeobj = new objdata();
+	objdata* cubeobj2 = new objdata();
+	objdata* cubeobj3 = new objdata();
+	cubeobj2->Point(0, -10, 0);
+	cubeobj3->Point(0, -10, 0);
 	//스피어 생성
 	sphere* sphere1 = new sphere;
-
+	comp->add(cubeobj);
+	comp->add(cubeobj2);
+	comp->add(cubeobj3);
 	//화면에 안보이는 컨트롤
 	//컨트롤 대상,회피할 오브젝트
 	gamecontroller* ann = new gamecontroller(sphere1, cubeobj, sw);
 	testnonrender* test = new testnonrender;
 	objinit->init();
-	
 	do {
 		//고정 프레임
 		if (time->isRenderTiming())
 		{
+
+			comp->settransform(0);
 			//화면에 보이진 않지만 실행 가능.
 			objupdater->update();
 		}

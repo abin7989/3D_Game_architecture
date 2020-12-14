@@ -22,7 +22,7 @@ void sphere::setsphere()
 	glm::vec3 lightPos2 = glm::vec3(0, 0, 10);
 	glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(LightID2, lightPos2.x, lightPos2.y, lightPos2.z);	
-	trans = glm::translate(trans,glm::vec3(0.0f, -10.0f, 0.0f));
+	settrans(glm::vec3(0.0f, -10.0f, 0.0f));
 	MVP = ProjectionMatrix * ViewMatrix * trans * ModelMatrix;
 
 }

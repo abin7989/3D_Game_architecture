@@ -31,6 +31,6 @@ public:
 	void setLight2(glm::vec3 lightPos);
 	virtual void init() override;
 	virtual void deletebuffer() override;
-	virtual void up() override { };
+	virtual void up() override ;
 	virtual void render() override { Renderer::instance()->render(this); };
 };
