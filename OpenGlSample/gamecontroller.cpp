@@ -1,5 +1,7 @@
-#include "gamecontroller.h"
 
+#include "gamecontroller.h"
+#include <cmath>
+#include <iostream>
 void gamecontroller::gameControll() {
 	if (glfwGetKey(setwindow::instance()->getwindow(), GLFW_KEY_ENTER) == GLFW_PRESS)
 	{
@@ -15,23 +17,32 @@ void gamecontroller::gameControll() {
 		{
 			sp->settrans(glm::vec3(0.0f, 0.0f, speed));
 		}
-		if (ob->arrive < 2)
+		if (glfwGetKey(sw->getwindow(), GLFW_KEY_W) == GLFW_PRESS)
 		{
-			float a = ob->z_point;
+			sp->settrans(glm::vec3(0.0f, -speed, 0.0f));
+		}
+		if (glfwGetKey(sw->getwindow(), GLFW_KEY_S) == GLFW_PRESS)
+		{
+			sp->settrans(glm::vec3(0.0f, speed,0.0f));
+		}
+		printf("%f\n", sp->pointy);
+		if (ob->pointy<sp->pointy+2&& ob->pointz < sp->pointz + 2)
+		{
+			float a = ob->pointz;
 			if (
-				a - 2.0f < sp->z_point &&
-				a + 2.0f > sp->z_point
+				sp->pointz+ 1.0f>ob->pointz &&
+				sp->pointz- 1.0f < ob->pointz
 				)
 			{
 				ran = rand() % 21;
-				ran = ran - 10 - ob->z_point;
-				ob->settrans(speed, glm::vec3(0.0f, 22.0f - ob->arrive, ran));
-				ob->arrive = 22;
+				ran = ran - 10 - ob->pointz;
+				printf("%f",ran);
+				ob->settrans(speed,glm::vec3(0.0f, 20.0f, ran));
 				speed += -0.02f;
 			}
 
 		}
-		if (ob->arrive < -2.0)
+		if (ob->pointy < -0)
 		{
 			glfwSetWindowShouldClose(sw->getwindow(), true);
 

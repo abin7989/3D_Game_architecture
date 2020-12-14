@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CompositeObj.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="gamecontroller.h" />
     <ClInclude Include="glm\common.hpp" />

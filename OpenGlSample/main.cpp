@@ -29,6 +29,7 @@
 #include "ObjectDelete.h"
 #include "ObjectInit.h"
 #include "testnonrender.h"
+#include "CompositeObj.h"
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "lib-vc2017/glew32.lib")
 #pragma comment(lib, "lib-vc2017/glfw3.lib")

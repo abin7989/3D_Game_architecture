@@ -21,7 +21,6 @@ public:
 		ObjectDelete::instance()->addObject(this);
 		ObjectInit::instance()->addObject(this);
 		ObjectUpdater::instance()->addObject(this);
-		
 	}
 	virtual ~Object() {}
 };

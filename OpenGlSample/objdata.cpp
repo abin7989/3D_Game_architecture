@@ -29,10 +29,9 @@ void objdata::setLight2(glm::vec3 lightPos)
 
 void objdata::settrans(float speed, glm::vec3 t)
 {
-	arrive += speed;
-	z_point += t.z;
-	trans = glm::translate(trans, t);
-	MVP = ProjectionMatrix *ViewMatrix *trans * Rot *ModelMatrix;
+	
+	trans = glm::translate(trans, Point(t.x,t.y,t.z));
+	MVP = ProjectionMatrix * ViewMatrix * trans * Rot * ModelMatrix;
 }
 void objdata::deletebuffer()
 {
@@ -52,5 +51,5 @@ void objdata::init()
 	setLight(glm::vec3(0, 0, 10));
 	setLight2(glm::vec3(0, 0, 10));
 	float speed = -0.1f;
-	settrans(speed, glm::vec3(0.0f, 10.0f, 0.0f));
+	settrans(speed, Point(0.0f, 10.0f, 0.0f));
 }
