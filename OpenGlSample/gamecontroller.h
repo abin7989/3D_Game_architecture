@@ -12,7 +12,7 @@ class gamecontroller :public NonRenderableObject
 	setwindow* sw;
 	
 	float ran = 0;
-	float speed = -0.1f;
+	float speed = -0.3f;
 	bool gamestart = false;
 public:
 	gamecontroller(sphere* a, objdata* b, setwindow* c)

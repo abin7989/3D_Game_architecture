@@ -25,7 +25,7 @@ void gamecontroller::gameControll() {
 		{
 			sp->settrans(glm::vec3(0.0f, speed,0.0f));
 		}
-		printf("%f\n", ob->pointz);
+		printf("%f\n",ob->pointy);
 		if (ob->pointy < sp->pointy + 2&& ob->pointz < sp->pointz + 2)
 		{
 			float a = ob->pointz;
@@ -34,18 +34,16 @@ void gamecontroller::gameControll() {
 				sp->pointz- 1.0f < ob->pointz
 				)
 			{
-				ran = rand() % 21;
+				ran = rand() % 50;
 				ran = ran - 10 - ob->pointz;
 				printf("%f",ran);
-				ob->settrans(speed,glm::vec3(0.0f, 20.0f, ran));
+				ob->settrans(speed,glm::vec3(0.0f, 40.0f, ran));
 				speed += -0.02f;
 			}
-
 		}
-		if (ob->pointy < -10)
+		if (ob->pointy < -30.0f)
 		{
 			glfwSetWindowShouldClose(sw->getwindow(), true);
-
 		}
 		ob->settrans(speed, glm::vec3(0.0f, speed, 0.0f));
 		ob->setCubeRot(0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
