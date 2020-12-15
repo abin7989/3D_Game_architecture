@@ -44,8 +44,6 @@ public:
 			++it
 			)
 		{
-		
-			
 			(*it)->Rot = glm::rotate((*it)->Rot, glm::radians(rot_angle), glm::vec3(1.0f, 1.0f,1.0f));
 			(*it)->PreviousRot = glm::rotate((*it)->PreviousRot, glm::radians(rot_angle), glm::vec3(0.0f, 0.0f, 1.0f));
 			
