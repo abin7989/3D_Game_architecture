@@ -25,7 +25,7 @@ void gamecontroller::gameControll() {
 		{
 			sp->settrans(glm::vec3(0.0f, speed,0.0f));
 		}
-		//printf("%f\n", sp->pointy);
+		printf("%f\n", ob->pointz);
 		if (ob->pointy < sp->pointy + 2&& ob->pointz < sp->pointz + 2)
 		{
 			float a = ob->pointz;
@@ -48,7 +48,7 @@ void gamecontroller::gameControll() {
 
 		}
 		ob->settrans(speed, glm::vec3(0.0f, speed, 0.0f));
-		ob->setCubeRot(0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
+		ob->setCubeRot(0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 }
 

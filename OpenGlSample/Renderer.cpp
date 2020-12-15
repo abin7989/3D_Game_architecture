@@ -5,7 +5,7 @@ void Renderer::render(RenderableObject* RB)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, RB->Texture);
 	glUniform1i(RB->TextureID, 0);
-	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->ModelMatrix * RB->Previoustrans;
+	RB->MVP = RB->ProjectionMatrix * RB->ViewMatrix * RB->trans * RB->Rot * RB->PreviousRot * RB->Previoustrans * RB->ModelMatrix;
 
 		glUniformMatrix4fv(RB->MatrixID, 1, GL_FALSE, RB->addressMVPa());
 		glUniformMatrix4fv(RB->ModelMatrixID, 1, GL_FALSE, RB->addressModelMatrix());

@@ -59,28 +59,34 @@ int main(void)
 	ObjectInit* objinit = ObjectInit::instance();
 	ObjectRenderer* objrender = ObjectRenderer::instance();
 	CompositeObj* comp = new CompositeObj();
+	CompositeObj* comp2 = new CompositeObj();
 	//큐브 생성
 	objdata* cubeobj = new objdata();
 	objdata* cubeobj2 = new objdata();
 	objdata* cubeobj3 = new objdata();
-	cubeobj2->Point(0, -10, 0);
-	cubeobj3->Point(0, -10, 0);
+
 	//스피어 생성
 	sphere* sphere1 = new sphere;
-	comp->add(cubeobj);
-	comp->add(cubeobj2);
-	comp->add(cubeobj3);
+	sphere* sphere2 = new sphere;
+
 	//화면에 안보이는 컨트롤
 	//컨트롤 대상,회피할 오브젝트
 	gamecontroller* ann = new gamecontroller(sphere1, cubeobj, sw);
 	testnonrender* test = new testnonrender;
 	objinit->init();
+
+	cubeobj2->Point(0, -10, 3);
+	cubeobj3->Point(0, -10, 3);
+	sphere2->Point(0, 10, 2);
+	comp->add(cubeobj);
+	comp->add(cubeobj2);
+	comp->add(cubeobj3);
+	comp2->add(sphere1);
+	comp2->add(sphere2);
 	do {
 		//고정 프레임
 		if (time->isRenderTiming())
 		{
-
-			comp->settransform(0);
 			//화면에 보이진 않지만 실행 가능.
 			objupdater->update();
 		}

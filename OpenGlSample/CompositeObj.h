@@ -35,21 +35,7 @@ public:
 	}
 	void settransform(int a)
 	{
-		//for (
-		//	std::vector<RenderableObject*>::const_iterator is = table_->begin();
-		//	is != table_->end();
-		//	++is
-		//	)
-		//{
-		//		for (
-		//			std::vector<RenderableObject*>::const_iterator it = table_->begin() + 1;
-		//			it != table_->end();
-		//			++it
-		//			)
-		//		{
-		//			(*it)->trans = glm::translate((*is)->trans, glm::vec3(0, (*it)->pointy, 1));
-		//		}
-		//}
+		//dfs±×·¡ÇÁ 
 		std::vector<RenderableObject*>::const_iterator is= table_->begin()+a;
 
 		for (
@@ -58,12 +44,19 @@ public:
 			++it
 			)
 		{
-			(*it)->trans = glm::translate((*is)->trans, glm::vec3(0, (*it)->pointy, 1));
+		
+			
+			(*it)->Rot = glm::rotate((*it)->Rot, glm::radians(rot_angle), glm::vec3(1.0f, 1.0f,1.0f));
+			(*it)->PreviousRot = glm::rotate((*it)->PreviousRot, glm::radians(rot_angle), glm::vec3(0.0f, 0.0f, 1.0f));
+			
+			(*it)->trans = glm::translate((*is)->trans, glm::vec3((*it)->pointx, (*it)->pointy, (*it)->pointz));
+			(*it)->Previoustrans = glm::mat4(1.0f);
 			settransform(a + 1);
 		}
 	}
-
+	virtual void up() override { settransform(0); };
 private:
 	std::vector<RenderableObject*>* table_;
 	glm::mat4 transform;
+	float rot_angle = 1.0f;
 };

@@ -47,7 +47,7 @@ void objdata::init()
 		"20161364_vs.shader",
 		"20161364_fs.shader"
 	);
-	setMVP(glm::vec3(25, 0, 0));
+	setMVP(glm::vec3(70, 0, 0));
 	setLight(glm::vec3(0, 0, 10));
 	setLight2(glm::vec3(0, 0, 10));
 	float speed = -0.1f;

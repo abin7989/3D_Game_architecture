@@ -16,6 +16,7 @@ public:
 	{
 		Rot = glm::mat4(1.0f);
 		trans = glm::mat4(1.0f);
+		PreviousRot = glm::mat4(1.0f);
 		Previoustrans = glm::mat4(1.0f);
 		Point(0, 0, 0);
 		ObjectRenderer::instance()->addObject(this);
@@ -46,6 +47,7 @@ public:
 	glm::mat4 Rot;
 	glm::mat4 trans;
 	glm::mat4 Previoustrans;
+	glm::mat4 PreviousRot;
 	bool node = false;
 	float pointx;
 	float pointy;
