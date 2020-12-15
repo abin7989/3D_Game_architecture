@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICleanUp.h"
+#include "interface/ICleanUp.h"
 #include <vector>
 class ObjectDelete
 {

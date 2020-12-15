@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #include "Object.h"
-#include "IRenderer.h"
+#include "interface/IRenderer.h"
 #include "ObjectRenderer.h"
 
 #include "Renderer.h"

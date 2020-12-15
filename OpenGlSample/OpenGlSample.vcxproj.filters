@@ -777,9 +777,6 @@
     <ClInclude Include="Renderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ICleanUp.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="RenderableObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -792,13 +789,7 @@
     <ClInclude Include="NonRenderableObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="gamecontroller.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="IU.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
@@ -808,9 +799,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObjectInit.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="IInit.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObjectRenderer.h">
@@ -823,6 +811,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CompositeObj.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\ICleanUp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\IInit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\IRenderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\IU.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

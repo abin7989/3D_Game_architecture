@@ -4,10 +4,10 @@ void sphere::setsphere()
 {
 	FileManager::instance()->gettarget(this);
 	FileManager::instance()->loadObj(
-		"sphere.obj",
-		"uvtemplate.DDS",
-		"20161364_vs.shader",
-		"20161364_fs.shader"
+		"textFile/sphere.obj",
+		"textFile/ÇØ¿Õ¼º.DDS",
+		"shader/20161364_vs.shader",
+		"shader/20161364_fs.shader"
 	);
 	ProjectionMatrix = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 	// Camera matrix

@@ -1,5 +1,5 @@
 #pragma once
-#include "IRenderer.h"
+#include "interface/IRenderer.h"
 #include "setwindow.h"
 #include <vector>
 class ObjectRenderer

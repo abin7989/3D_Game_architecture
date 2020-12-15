@@ -5,13 +5,13 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-#include "ICleanUp.h"
+#include "interface/ICleanUp.h"
 #include "FileManager.h"
 #include "ObjectDelete.h"
 #include "ObjectInit.h"
-#include "IInit.h"
+#include "interface/IInit.h"
 #include "ObjectUpdater.h"
-#include "IU.h"
+#include "interface/IU.h"
 
 class Object : public ICleanUp, public IInit, public IU
 {

@@ -42,10 +42,10 @@ void objdata::init()
 {
 	FileManager::instance()->gettarget(this);
 	FileManager::instance()->loadObj(
-		"cube.obj",
-		"uvtemplate.DDS",
-		"20161364_vs.shader",
-		"20161364_fs.shader"
+		"textFile/cube.obj",
+		"textFile/uvtemplate.DDS",
+		"shader/20161364_vs.shader",
+		"shader/20161364_fs.shader"
 	);
 	setMVP(glm::vec3(70, 0, 0));
 	setLight(glm::vec3(0, 0, 10));
